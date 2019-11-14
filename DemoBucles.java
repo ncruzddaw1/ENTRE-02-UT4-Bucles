@@ -1,17 +1,19 @@
+import java.util.Random;
 /**
- *    @author - 
+ *
+ * Nicolas Cruz Diaz
  */
 public class DemoBucles
 {
     private final char ASTERISCO = '*';
     private final char ESPACIO = ' ';
-
+    private Random generador;
     /**
      * Constructor  
      */
     public DemoBucles()
     {
-       
+       generador = new Random();
     }
 
     /**
@@ -26,9 +28,12 @@ public class DemoBucles
      *  Usa bucles while
      */
     public int mayorPotencia2(int numero) {
-        
-        return 0;
-
+        int contador = 1;
+        while(contador <= numero)
+        {
+            contador = contador * 2;  
+        }
+        return contador / 2;
     }
 
     /**
@@ -46,10 +51,18 @@ public class DemoBucles
      *  18 =    16     2
      *  64 =    64
      */
-    public void escribirSumaPotencias(int numero) {
-
-         
-
+    public void escribirSumaPotencias(int numero) 
+    {
+        int n = mayorPotencia2(numero);
+        int potencia = 0;
+        while(potencia <= numero)
+        {
+           potencia = mayorPotencia2(numero);
+           numero = numero - potencia;
+           System.out.printf("%6d  = ", potencia);
+        }
+        System.out.println(numero + " = " + potencia);
+        
     }
 
     /**
@@ -63,10 +76,18 @@ public class DemoBucles
      * Utiliza bucles while
      * 
      */
-    public void generarAleatorios(int n) {
-
-       
-
+    public void generarAleatorios(int n) 
+    {
+       int contador = 1;
+       int aleatorio = generador.nextInt(256);
+       escribirSumaPotencias(aleatorio);
+       while(aleatorio != 0)
+       {
+           escribirSumaPotencias(aleatorio);
+           aleatorio = generador.nextInt(256);
+           contador++;
+       }
+       System.out.println(contador);
     }
 
     /**
@@ -76,7 +97,11 @@ public class DemoBucles
      */
     public void escribirCaracter(int n, char caracter)
     {
-         
+        
+        for (int i = 1; i <= n; i++) 
+        { 
+            System.out.print(caracter);
+        } 
     }
 
     /**
@@ -85,11 +110,22 @@ public class DemoBucles
      *  
      *   Usa bucles for
      */
-    public  void mostrarEscalera(int escalones, int alto, int ancho) {
+    public  void mostrarEscalera(int escalones, int alto, int ancho) 
+    {
         System.out.println();
-
-         
-
+        for (int i = 0; i < escalones; i++) 
+        {     
+               for (int a = 1; a <= alto; a++)
+               {
+                   for (int c = 1; c <= ancho; c++)
+                   {
+                       escribirCaracter(ancho, ASTERISCO);
+                       escribirCaracter(ancho * i, ASTERISCO);
+                   }
+                   System.out.println();
+               }
+               System.out.println();          
+        } 
     }
 
 }

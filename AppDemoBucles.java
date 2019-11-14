@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  *  @author - 
  *  
@@ -8,7 +8,7 @@
  */
 public class AppDemoBucles
 {
-
+    
     /**
      *  Punto de entrada a la aplicación. Dentro del main:
      *  - define y crea el teclado  
@@ -25,7 +25,21 @@ public class AppDemoBucles
      */
     public static void main(String[] args)
     {
-         
+        Scanner teclado = new Scanner(System.in);
+        DemoBucles demo = new DemoBucles();
+        System.out.println("Teclee tope de aleatorios a generar [10, 15] ");
+        int aleatorio = teclado.nextInt();
+        while(aleatorio < 10 || aleatorio > 15)
+        {
+            System.out.println("Error, Teclee tope de aleatorios a generar [10, 15]");
+            aleatorio = teclado.nextInt();
+        }
+        System.out.println("\nNºs aleatorios como suma de potencias 2: \n");
+        demo.generarAleatorios(aleatorio);
+        System.out.println("\nBucle terminado porque se han generado ya 13 aleatorios " + aleatorio);
+        Utilidades.hacerPausa();
+        Utilidades.borrarPantalla();
+        demo.mostrarEscalera(6,4,12);
     }
 }
 
